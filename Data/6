@@ -1,0 +1,6 @@
+
+
+olt-zte01-taguatinga#show pon unprovision-onu
+                                ^
+%Error 20200: Invalid input detected at '^' marker.Invalid command
+olt-zte01-taguatinga#
