@@ -10,7 +10,6 @@ from buscaOnu import *
 from apagOnu import *
 from win32api import GetSystemMetrics
 import time
-import esky
 
 onuLista = []
 
@@ -128,11 +127,13 @@ class TelaInicial:
             end = time.time()
             if end - start >= 30:
                 tempo = 1
+        print("Interpretador" + datetime.now().strftime('%H:%M:%S'))
         for x in range(len(processos)):
             data = open("Data/" + str(x), 'r')
             data = data.read()
             interpretador = InterpretarDados(olts[x][1], data.encode('utf-8'))
             interpretador.onusNaoProv()
+        print(datetime.now().strftime('%H:%M:%S'))
         #destroi o conteiners para limpar a tela antes mudar de tela
         self.containerTitulo.destroy()
         self.containerBotaoProv.destroy()
@@ -289,24 +290,14 @@ class TelaOnusNaoProv:
                             # gera script que sera utilizado no provisionamento
                             script = scriptNokia(onus[idx][0], onus[idx][1], onus[idx][2], onus[idx][3], onus[idx][5],
                                                contrato, onus[idx][4])
-                            #print(script)
-                        break
-                con.encCon()
-            except:
-                showerror("ERRO", "Conexão " + onus[idx][5] + " falhou!")
-        elif con.flagCon:
-            showerror("ERRO", "Conexão " + onus[idx][5] + " falhou!")
+                            con.encCon()
+                            con = conSSL(onus[idx][5], "modificação")
 
-        # estabelece a conexão com a olt
-        con = conSSL(onus[idx][5], "modificação")
-        #print(onus[idx][5])
-        if not con.flagCon:
-            try:
+                        break
                 # provisiona a onu
                 con.enviarComando("\n")
                 time.sleep(2)
                 con.enviarComando(script)
-                print(script)
                 con.enviarComando("\n")
                 time.sleep(2)
                 con.encCon()
@@ -328,8 +319,9 @@ class TelaOnusNaoProv:
                 log.close()
             except:
                 showerror("ERRO", "Conexão " + onus[idx][5] + " falhou!")
-        else:
+        elif con.flagCon:
             showerror("ERRO", "Conexão " + onus[idx][5] + " falhou!")
+
 
 
 
@@ -643,9 +635,6 @@ class TelaBuscarOnu:
 
         showinfo("Apagar ONU", "Exclusão Realizada!")
         self.voltarTelaInicial(event)
-if hasattr(sys,"frozen"):
-    app = esky.Esky(sys.executable,"https://drive.google.com/drive/folders/1NiFKAG88Du1JpLMjjpwVCemHGiLuPnOy?usp=sharing")
-    app.auto_update()
 root = Tk()
 root.iconbitmap('ico/spu.ico')
 root.title("Sistema de Provisionamento Unificado (Ísis)")

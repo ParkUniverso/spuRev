@@ -6,7 +6,7 @@ onu = ["3","4","6","7","13","21"]
 client = paramiko.SSHClient()
 client.load_system_host_keys()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-client.connect('10.45.2.2', port=22, username='donavan', password='Ora@2020!')
+client.connect('10.45.2.14', port=22, username='donavan', password='Ora@2020!')
 transport = client.get_transport()
 session = transport.open_session()
 # session.setblocking(0) # Set to non-blocking mode
@@ -15,7 +15,7 @@ session.invoke_shell()
 session.send('\n')
 session.recv(8000)
 for x in range(17):
-    if x+1 > 16:
+    if (x+1 > 1 and x+1 < 10) or x + 1 > 11:
     #if x + 1 > 1 and x + 1 < 10 or x + 1 > 11:
         for y in range(16):
             pos = [""]

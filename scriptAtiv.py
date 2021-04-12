@@ -67,7 +67,7 @@ def scriptZTE(serial, sl, pn, ps, oltEsc, contratoDig, modeloOnu):
 
 def scriptNokia(serial, sl, pn, ps, oltEsc, contratoDig, modeloOnu):
     if modeloOnu == "nokia 2":
-        swVer = "DISABLED"
+        swVer = "AUTO"
         preConf = "PREALCL73X"
     else:
         swVer = "AUTO"
