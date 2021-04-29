@@ -1,6 +1,13 @@
 
 
-olt-zte01-taguatinga#show pon unprovision-onu
-                                ^
-%Error 20200: Invalid input detected at '^' marker.Invalid command
-olt-zte01-taguatinga#
+typ:isadmin># show pon unprovision-onu
+================================================================================
+unprovision-onu table
+================================================================================
+         |                 |            |                |              |actual 
+alarm-idx|gpon-index       |sernum      |subscriber-locid|logical-authid|us-rate
+---------+-----------------+------------+----------------+--------------+-------
+-[1D\[1D|[1D/[1D-[1D\[1D|[1D/[1D-[1D\[1D|[1D/[1D [1D--------------------------------------------------------------------------------
+unprovision-onu count : 0
+================================================================================
+typ:isadmin># 

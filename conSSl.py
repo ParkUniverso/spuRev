@@ -9,7 +9,8 @@ olts = [["zte", "Olt ZTE 1", "10.45.2.2", 22, "donavan", 'Ora@2020!','donavan', 
         ["nokia", "Olt Nokia Vicente Pires", "10.45.8.2", 22, "isadmin", 'ANS#150','SUPERUSER', 1022],
         ["nokia", "Olt Nokia Ceilandia 1", "10.45.4.2", 22, "isadmin", 'ANS#150','SUPERUSER', 1022],
         ["nokia", "Olt Nokia Ceilandia 2", "10.45.4.10", 22, "isadmin", 'ANS#150','SUPERUSER', 1022],
-        ["nokia", "Olt Nokia Recando das Emas", "10.45.5.2", 22, "isadmin", 'ANS#150','SUPERUSER', 1022]]
+        ["nokia", "Olt Nokia Recando das Emas", "10.45.5.2", 22, "isadmin", 'ANS#150','SUPERUSER', 1022],
+        ["nokia", "Olt Nokia Recando das Emas 2", "10.45.5.6", 22, "isadmin", 'ANS#150','SUPERUSER', 1022]]
 
 class conSSL:
     # função que conecta à olt
@@ -19,9 +20,10 @@ class conSSL:
         self.oltSel = 0
 
         # verifica qual a olt selecionada pra ser realizada a conexão
-        for x in range(6):
+        for x in range(len(olts)):
             if olts[x][1]==olt:
                 self.oltSel = x
+                print("conexão: " + olts[x][1])
                 break
 
         # trecho a seguir efetivamente realiza a conexão
@@ -56,7 +58,7 @@ class conSSL:
     # pega a resposta da olt a algum comando
     def receberResposta(self):
         # pega a respota da olt ao comando
-        self.resposta = self.session.recv(5000000)
+        self.resposta = self.session.recv(50000000)
 
     # encerra a conexão
     def encCon(self):

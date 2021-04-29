@@ -15,13 +15,15 @@ def calcularVlan(olt, sl):
         vlan = 2057 + (int(sl))
     elif olt == "Olt Nokia Recando das Emas":
         vlan = 2065 + (int(sl))
+    elif olt == "Olt Nokia Recando das Emas 2":
+        vlan = 2073 + (int(sl))
     return vlan
 
 def scriptZTE(serial, sl, pn, ps, oltEsc, contratoDig, modeloOnu):
     if contratoDig == "":
         contratoDig = "0000"
     scriptMult = ""
-    if ps == None: ps = "1"
+    if ps == None or ps == "": ps = 1
     vlan = calcularVlan(oltEsc, sl)
     if modeloOnu == "zte wifi":
         scriptMult = ("configure terminal\ninterface gpon-olt_1/" + sl + "/" + pn + "\n"
@@ -76,7 +78,7 @@ def scriptNokia(serial, sl, pn, ps, oltEsc, contratoDig, modeloOnu):
         contratoDig = "xxxx"
     script = ""
     vlan = calcularVlan(oltEsc, sl)
-    if ps==None or ps=="": ps="1"
+    if ps==None or ps=="": ps=1
     if modeloOnu == "nokia" or modeloOnu == "nokia 2":
         script = ("ENT-ONT::ONT-1-1-" + sl + "-" + pn + "-" + str(ps) + "::::DESC1=\"ONU NOKIA\",DESC2=\"" + contratoDig + "\",SERNUM=" + serial + ",SWVERPLND=" + swVer + ",DLSW=" + swVer + ",OPTICSHIST=ENABLE,PLNDCFGFILE1=" + preConf + ",DLCFGFILE1=" + preConf + ",VOIPALLOWED=VEIP;\n"
                         "ED-ONT::ONT-1-1-" + sl + "-" + pn + "-" + str(ps) + ":::::IS;\n"

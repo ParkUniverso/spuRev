@@ -68,6 +68,7 @@ class TelaInicial:
         data.close()
 
         con = conSSL(olts[x][1], "consulta")
+
         # verifica se houve erro na conexão
         if not con.flagCon:
             # verifica se houve erro no envio do comando
@@ -107,6 +108,7 @@ class TelaInicial:
             os.makedirs("Data")
         # cria os processos para o programa trabalhar em paralelismo
         for x in range(len(olts)):
+            print(olts[x][0] + " " + olts[x][1])
             if os.path.exists("Data/" + str(x)):
                 os.remove("Data/" + str(x))
             if x > 0:

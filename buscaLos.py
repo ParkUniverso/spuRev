@@ -87,8 +87,10 @@ class BuscaLos:
             if not con.flagCon:
                 try:
                     con.enviarComando("show equipment ont operational-data\n")
-                    time.sleep(10)
+                    time.sleep(20)
                     con.receberResposta()
+                    print(con.resposta.decode('utf-8'))
+                    print(self.idx)
                     self.respostaOlt = con.resposta.decode('utf-8')
                     for y in range(8):
                         self.texto = ""

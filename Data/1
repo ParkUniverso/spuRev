@@ -1,7 +1,5 @@
 
 
 olt-zte02-taguatinga#show gpon onu uncfg
-OnuIndex                 Sn                  State
----------------------------------------------------------------------
-gpon-onu_1/2/5:1         ZTEGC4BBA62A        unknown
+%Code 62310-GPONSRV : No related information to show.
 olt-zte02-taguatinga#

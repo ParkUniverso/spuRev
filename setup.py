@@ -23,7 +23,7 @@ msi_data = {"Shortcut": shortcut_table}
 bdist_msi_options = {'data': msi_data}
 setup(
     name = "SPU",
-    version = "6.4.6",
+    version = "6.8",
     description = "Sistema de provisionamento unificado (Ísis)",
 options = {"bdist_msi": bdist_msi_options,'build_exe': {'includes':includes,'excludes':excludes,'packages':packages,'include_files':includefiles,'include_msvcr': True}},
     executables = [Executable("main.py", base = "Win32GUI",
